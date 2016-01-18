@@ -13,3 +13,7 @@ Hibernate
 Gradle 
 ★DB
 PostgreSQL
+
+2016/01/18  
+securing webテンプレートを編集して  
+今回実装する画面のみ作成(SQL等は省略)  
