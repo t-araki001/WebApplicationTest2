@@ -17,22 +17,17 @@ h1 {
 	<h1>データベースアクセステスト</h1>
 	<h2>ようこそ！！</h2>
 
-	<table>
-		<tr>
-			<td>    <p th:text=" ${name} + 'さま'" /></td>
+	<table class="home">
+		<tr th:each="name:${name}">
+			<td th:text="${name.empName} + ${name.empName2} + 'さま'"/>
 		</tr>
 	</table>
-
-	<p>
-		Click <a th:href="@{/hello}">here</a>
-	</p>
-	
+	<p></p>
 	※ユーザ追加を行う場合は<a th:href="@{/setName}">コチラ</a>
-
 	<p></p>
 	※ユーザ検索を行う場合は<a th:href="@{/searchName}">コチラ</a>
 
 	<p></p>
-
 </body>
+
 </html>
