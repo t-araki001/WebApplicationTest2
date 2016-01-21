@@ -23,4 +23,4 @@ securing webテンプレートを編集して
   
 2016/01/21  
 DBに接続する処理を追加。  
-表示、追加、検索に対応  
+表示(findAll)、追加(saveAndFlush)、検索(findBy)に対応  
