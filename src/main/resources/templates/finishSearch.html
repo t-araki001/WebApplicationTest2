@@ -16,13 +16,41 @@ h1 {
 </head>
 <body>
 	<h1>検索完了</h1>
-	<p th:text= "'【' + ${nameForm.firstName} + '】に該当するユーザーは以下の通りです。'"/>
+	<p th:text="'【' + ${word} + '】に該当するユーザーは以下の通りです。'" />
 
+	<table class="finishSearch">
+		<tr th:each="results:${results}">
+			<td th:text="${results.firstname} + ' ' + ${results.lastname} " />
+		</tr>
+	</table>
 	<p>
 		<a th:href="@{/searchName}">続けて検索</a>
 	</p>
-	<p>
+		<p>
 		<a th:href="@{/home}">Topへ戻る</a>
 	</p>
+	
+	<hr/>
+	<p>ここからもできる</p>
+	<form action="#" th:action="@{/finishSearch}" th:object="${nameForm}"
+		method="post">
+		<div>
+			<label>検索ワード : </label> 
+			<select name="category">
+				<option value="firstName">名字</option>
+				<option value="lastName">名前</option>
+				<option value="fullName">名字or名前</option>
+			</select> <input type="text" name="word" />
+		</div>
+
+		<div>
+			<input type="submit" value="検索" />
+		</div>
+	</form>
+
+
+
+
+
 </body>
 </html>

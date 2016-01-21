@@ -11,6 +11,21 @@ h1 {
 	padding: 3px;
 }
 </style>
+<script type="text/javascript">
+<!--
+
+function chktext(obj) {
+	if(!obj.value){
+		chktext[obj.name] =false;
+		alert("未入力項目があります");
+		if(!!obj.style) obj.style.backgroundColor='lightpink';
+	}else{
+		chktext[obj.name] = true;
+		if(!!obj.style) obj.style.backgroundColor='white';
+	}
+}
+// -->
+</script>
 </head>
 <body>
 
@@ -19,11 +34,11 @@ h1 {
 	
 	<form action="#" th:action="@{/checkName}" th:object="${nameForm}" method="post">
 		<div>
-			<label> 名字 : <input type="text" name="FIRST_NAME" th:field="*{firstName}" />
+			<label> 名字 : <input type="text" name="FIRST_NAME" th:field="*{firstName}" onblur="chktext(this)"/>
 			</label>
 		</div>
 		<div>
-			<label> 名前 : <input type="text" th:field="*{lastName}" name="LAST_NAME" />
+			<label> 名前 : <input type="text" name="LAST_NAME" th:field="*{lastName}" onblur="chktext(this)"/>
 			</label>
 		</div>
 
@@ -31,7 +46,8 @@ h1 {
 			<input type="submit" value="登録" />
 		</div>
 	</form>
-
+		<hr/>
+	<p></p>
 	<form th:action="@{/logout}" method="post">
 		<input type="submit" value="ログアウト" />
 	</form>

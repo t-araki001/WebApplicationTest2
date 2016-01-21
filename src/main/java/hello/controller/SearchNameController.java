@@ -10,7 +10,7 @@ import hello.model.NameForm;
 
 @Controller
 public class SearchNameController {
-	//ŒŸõ“ü—Í‰æ–Ê
+	//æ¤œç´¢å…¥åŠ›ç”»é¢
 	@RequestMapping(value = "/searchName", method = RequestMethod.GET)
 	public String searchnameForm(Model model) {
 		model.addAttribute("nameForm", new NameForm());

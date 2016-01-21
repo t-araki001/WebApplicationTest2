@@ -1,19 +1,30 @@
 package hello.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import hello.entity.Name;
 import hello.model.NameForm;
+import hello.repository.NameRepository;
 
 @Controller
 public class FinishNameController {
-
-	//ì¸óÕäÆóπâÊñ 
-	@RequestMapping(value="/finishName", method=RequestMethod.POST)
-    public String finishForm(@ModelAttribute NameForm nameForm, Model model) {
-        model.addAttribute("nameForm", nameForm);
-        return "finishName";
-    }
+	
+	@Autowired
+	NameRepository repository;
+	
+	// ÁôªÈå≤ÂÆå‰∫ÜÁîªÈù¢
+	@RequestMapping(value = "/finishName", method = RequestMethod.POST)
+	public String finishForm(@RequestParam("firstName") String firstname, @RequestParam("lastName") String lastname,
+			@ModelAttribute NameForm nameForm, Model model) {
+		Name name = new Name(firstname,lastname);
+		repository.saveAndFlush(name);
+		model.addAttribute("nameForm", nameForm);
+		return "finishName";
+	}
 }

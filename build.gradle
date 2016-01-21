@@ -1,6 +1,15 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.3.1.RELEASE")
+    }
+}
+
 ext {
   // spring boot plugin
-  springBootVersion = "1.2.1.RELEASE"
+  springBootVersion = "1.3.1.RELEASE"
 
   // MySQL connecterVersion
   mySQLVersion = '5.1.34'
@@ -42,7 +51,7 @@ dependencies {
   compile "org.postgresql:postgresql:9.4-1201-jdbc41"
   
   compile("org.hibernate:hibernate-core:4.3")
-   testCompile("junit:junit")
+  testCompile("junit:junit")
 }
 
 task wrapper(type: Wrapper) {

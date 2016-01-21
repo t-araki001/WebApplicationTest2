@@ -4,6 +4,22 @@
 	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
 <title>ユーザ検索画面</title>
+<script type="text/javascript">
+<!--
+	function chktext(obj) {
+		if (!obj.value) {
+			chktext[obj.name] = false;
+			alert("検索ワードが入ってないです。");
+			if (!!obj.style)
+				obj.style.backgroundColor = 'lightpink';
+		} else {
+			chktext[obj.name] = true;
+			if (!!obj.style)
+				obj.style.backgroundColor = 'white';
+		}
+	}
+// -->
+</script>
 <style>
 h1 {
 	font size: 10t;
@@ -18,18 +34,23 @@ h1 {
 	<h1>ユーザ検索</h1>
 	<h2>検索したい名前を入力</h2>
 
-	<form action="#" th:action="@{/finishSearch}" th:object="${nameForm}" method="post">
+	<form action="#" th:action="@{/finishSearch}" th:object="${nameForm}"
+		method="post">
 		<div>
-			<label> 検索ワード　: <input type="text" name="FIRST_NAME" th:field="*{firstName}" />
-			</label>
+			<label>検索ワード : </label> 
+			<select name="category">
+				<option value="firstName">名字</option>
+				<option value="lastName">名前</option>
+				<option value="fullName">名字or名前</option>
+			</select> <input type="text" name="word" onblur="chktext(this)"/>
 		</div>
 
 		<div>
 			<input type="submit" value="検索" />
 		</div>
 	</form>
-
 	<p></p>
+		<hr/>
 	<p>
 		<a th:href="@{/home}">Topへ戻る</a>
 	</p>

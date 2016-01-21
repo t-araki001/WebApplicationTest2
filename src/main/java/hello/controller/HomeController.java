@@ -6,21 +6,21 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import hello.repository.EmpRepository;
-import hello.entity.Emp;
+import hello.entity.Name;
+import hello.repository.NameRepository;
 
 @Controller
 @EnableAutoConfiguration
 public class HomeController {
 	
 	@Autowired
-	// ƒŠƒ|ƒWƒgƒŠ‚ğ•R‚Ã‚¯‚Ü‚·
-	EmpRepository repository;
+	//ãƒªãƒã‚¸ãƒˆãƒªé–¢é€£ä»˜ã‘
+	NameRepository repository;
 	
-	//HOME‰æ–Ê
+	//HOME
 	@RequestMapping({ "/", "/home" })
 	public String home(Model model) {
-		Iterable<Emp> list = repository.findAll();
+		Iterable<Name> list = repository.findAll();
 		model.addAttribute("name", list);
 		return "home";
 	}
