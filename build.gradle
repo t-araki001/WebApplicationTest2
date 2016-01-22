@@ -1,9 +1,11 @@
 buildscript {
     repositories {
+    jcenter()
         mavenCentral()
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:1.3.1.RELEASE")
+        classpath "org.springframework:springloaded:1.2.3.RELEASE"
     }
 }
 
@@ -43,6 +45,8 @@ dependencies {
   compile "org.springframework.boot:spring-boot-starter-test:$springBootVersion"
   compile "org.springframework.boot:spring-boot-starter-thymeleaf:$springBootVersion"
   compile "org.springframework.boot:spring-boot-starter-data-jpa:$springBootVersion"
+  compile "org.springframework.security:spring-security-config:$springBootVersion"
+  compile "org.springframework.boot:spring-boot-starter-jdbc:$springBootVersion"
 
   // MySQL
   compile "mysql:mysql-connector-java:$mySQLVersion"
