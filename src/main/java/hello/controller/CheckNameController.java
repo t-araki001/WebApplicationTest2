@@ -10,7 +10,7 @@ import hello.model.NameForm;
 
 @Controller
 public class CheckNameController {
-	//“ü—ÍŠm”F‰æ–Ê
+	//ç¢ºèªç”»é¢
 	@RequestMapping(value = "/checkName", method = RequestMethod.POST)
 	public String checkForm(@ModelAttribute NameForm nameForm, Model model) {
 		model.addAttribute("nameForm", nameForm);

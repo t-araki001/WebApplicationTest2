@@ -1,5 +1,7 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
 <title>ユーザ登録画面</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -24,6 +26,18 @@ function chktext(obj) {
 		if(!!obj.style) obj.style.backgroundColor='white';
 	}
 }
+
+function check(chk) {
+	if (chk.elements["firstName"].value == ""
+			|| chk.elements["firstName"].value == null) {
+		alert("名字が未入力です");
+		return false;
+	} else if (chk.elements["lastName"].value == ""
+			|| chk.elements["lastName"].value == null) {
+		alert("名前が未入力です");
+		return false;
+	}
+}
 // -->
 </script>
 </head>
@@ -32,7 +46,7 @@ function chktext(obj) {
 	<h1>ユーザ登録</h1>
 	<h2>登録したい名字、名前をそれぞれ入力</h2>
 	
-	<form action="#" th:action="@{/checkName}" th:object="${nameForm}" method="post">
+	<form action="#" th:action="@{/checkName}" th:object="${nameForm}" method="post" onsubmit="return check(this);">
 		<div>
 			<label> 名字 : <input type="text" name="FIRST_NAME" th:field="*{firstName}" onblur="chktext(this)"/>
 			</label>
@@ -55,6 +69,6 @@ function chktext(obj) {
 	<p>
 		<a th:href="@{/home}">Topへ戻る</a>
 	</p>
-
+	
 </body>
 </html>

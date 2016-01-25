@@ -16,15 +16,27 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/", "/home", "/searchName", "/finishSearch").permitAll().anyRequest()
-				.authenticated().and().formLogin().loginPage("/login").permitAll().and().logout()
-				.logoutRequestMatcher(new AntPathRequestMatcher("/logout")).permitAll();
+		http.
+			authorizeRequests()
+			.antMatchers("/", "/home", "/searchName", "/finishSearch")
+			.permitAll()
+			.anyRequest()
+			.authenticated()
+			.and()
+		.formLogin()
+			.loginPage("/login")
+			.permitAll()
+			.and()
+		.logout()
+			.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+			.permitAll();
 	}
 
 	@Autowired
 	   private DataSource dataSource;
 
 	@Autowired
+
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.jdbcAuthentication().dataSource(dataSource);
 	}

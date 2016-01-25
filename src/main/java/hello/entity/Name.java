@@ -5,8 +5,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import org.springframework.test.context.ActiveProfiles;
 
-@Entity// 
+
+@Entity//
+@ActiveProfiles("login")
 public class Name {
 
 	@Id//プライマリキー

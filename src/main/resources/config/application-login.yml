@@ -1,0 +1,8 @@
+spring:
+  profiles: login
+  datasource:
+    url: jdbc:postgresql://localhost:5433/test2
+    username: postgres
+    password: keyport01
+    driverClassName: org.postgresql.Driver
+    session-timeout: 60

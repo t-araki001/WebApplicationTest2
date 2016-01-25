@@ -9,7 +9,7 @@ import hello.model.NameForm;
 
 @Controller
 public class SetNameController {
-	//’Ç‰Á“ü—Í‰æ–Ê
+	//å…¥åŠ›ç”»é¢
 	@RequestMapping(value = "/setName", method = RequestMethod.GET)
 	public String nameForm(Model model) {
 		model.addAttribute("nameForm", new NameForm());
