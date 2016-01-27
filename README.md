@@ -39,3 +39,4 @@ DBの設定をymlファイルに移行
 2:Controllerの統合(Login関連とそれ以外)  
 3:登録と検索処理用のmodelクラスを作成。Controllerから呼び出して実施する  
 4:ymlにcreate dropを追加。Postgresのポート番号を5432に修正  
+5:NameForm周りで@NotEmptyと@validの比較を追加
