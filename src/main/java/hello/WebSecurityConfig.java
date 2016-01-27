@@ -18,8 +18,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.
 			authorizeRequests()
-			.antMatchers("/", "/home","/login","/searchName", "/finishSearch","/err")
-			.permitAll()
+			.antMatchers("/", "/home","/login","/searchName", "/finishSearch","/err").permitAll()
+			.antMatchers("/setName").hasRole("ADMIN")
 			.anyRequest().authenticated()
 			.and()
 		.formLogin()
@@ -38,7 +38,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	   private DataSource dataSource;
 
 	@Autowired
-
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.jdbcAuthentication().dataSource(dataSource);
 	}

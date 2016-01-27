@@ -34,8 +34,7 @@ h1 {
 	<h1>ユーザ検索</h1>
 	<h2>検索したい名前を入力</h2>
 
-	<form action="#" th:action="@{/finishSearch}" th:object="${nameForm}"
-		method="post">
+	<form action="#" th:action="@{/finishSearch}" method="post">
 		<div>
 			<label>検索ワード : </label> 
 			<select name="category">
