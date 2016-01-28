@@ -2,6 +2,8 @@ package hello.model;
 
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -18,8 +20,8 @@ public class MemberSearch {
 	public MemberSearch() {
 	}
 
-	public Iterable<Name> MemberSearchList(String category, String word) {
-		Iterable<Name> list = null;
+	public List<Name> MemberSearchList(String category, String word) {
+		List<Name> list = null;
 		if (category.equals("firstName")) {
 			list = repository.findByFirstname(word);
 		}else if (category.equals("lastName")) { 
@@ -32,8 +34,8 @@ public class MemberSearch {
 		return list;
 	}
 
-	public Iterable<Name> MemberList() {
-		Iterable<Name> list = repository.findAll();
+	public List<Name> MemberList() {
+		List<Name> list = repository.findAll();
 		return list;
 	}
 

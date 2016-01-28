@@ -22,24 +22,24 @@ import hello.model.MemberSearch;
 public class MemberController {
 	
 	@Autowired
-	MemberRegist memberregist;
+	MemberRegist memberRegist;
 
 	@Autowired
-	MemberSearch membersearch;
+	MemberSearch memberSearch;
 	
 //ここはHOME画面
 	//HOME
 	@RequestMapping({ "/", "/home" })
 	public String home(Model model) {
-		model.addAttribute("name", membersearch.MemberList());
+		model.addAttribute("name", memberSearch.MemberList());
 		return "home";
 	}
 	
 //ここから追加機能
 	//入力画面
 	@RequestMapping(value = "/setName", method = RequestMethod.GET)
-	public String nameForm(Model model) {
-		model.addAttribute("nameForm", new NameForm());
+	public String nameForm(@ModelAttribute NameForm nameForm, Model model) {
+//		model.addAttribute("nameForm", new NameForm());
 		return "setName";
 	}
 	
@@ -52,8 +52,8 @@ public class MemberController {
 	
 	// 登録完了画面
 	@RequestMapping(value = "/finishName", method = RequestMethod.POST)
-	public String finishForm( @ModelAttribute @Validated NameForm nameForm, Model model) {
-		memberregist.MemberRegister(nameForm);
+	public String finishForm(@ModelAttribute @Validated NameForm nameForm, Model model){
+		memberRegist.MemberRegister(nameForm);
 		model.addAttribute("nameForm", nameForm);
 		return "finishName";
 	}
@@ -61,17 +61,17 @@ public class MemberController {
 //ここから検索機能
 	//検索内容入力画面
 	@RequestMapping(value = "/searchName", method = RequestMethod.GET)
-	public String searchnameForm() {
+	public String searchnameForm(){
 		return "searchName";
 	}
 	
 	// 検索完了画面
 	@RequestMapping(value = "/finishSearch", method = RequestMethod.POST)
-	public String finishSearch( Model model, @RequestParam("category") String category,
-			@RequestParam("word") String word) {
+	public String finishSearch(Model model, @RequestParam("category") String category,
+			@RequestParam("word") String word){
 		
 		model.addAttribute("word", word);
-		model.addAttribute("results", membersearch.MemberSearchList(category,word));
+		model.addAttribute("results", memberSearch.MemberSearchList(category, word));
 		return "finishSearch";
 	}
 

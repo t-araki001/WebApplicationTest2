@@ -18,7 +18,7 @@ public class MemberRegist {
 	}	
 	
 	public void MemberRegister(NameForm nameForm) {
-		Name name = new Name(nameForm.getFirstName(),nameForm.getLastName());
+		Name name = new Name(nameForm.getFirstName(), nameForm.getLastName());
 		repository.saveAndFlush(name);
 	}
 
