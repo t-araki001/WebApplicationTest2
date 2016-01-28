@@ -2,15 +2,23 @@ package hello.model;
 
 
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import hello.entity.Name;
 import hello.repository.NameRepository;
 
+@Component
 public class MemberSearch {
 
+	@Autowired
+	NameRepository repository;
+
+	
 	public MemberSearch() {
 	}
 
-	public Iterable<Name> MemberSearchList(String category, String word, NameRepository repository) {
+	public Iterable<Name> MemberSearchList(String category, String word) {
 		Iterable<Name> list = null;
 		if (category.equals("firstName")) {
 			list = repository.findByFirstname(word);
@@ -24,7 +32,7 @@ public class MemberSearch {
 		return list;
 	}
 
-	public Iterable<Name> MemberList( NameRepository repository) {
+	public Iterable<Name> MemberList() {
 		Iterable<Name> list = repository.findAll();
 		return list;
 	}

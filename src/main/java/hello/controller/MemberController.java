@@ -1,12 +1,12 @@
 package hello.controller;
 
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import hello.form.NameForm;
 import hello.model.MemberRegist;
 import hello.model.MemberSearch;
-import hello.repository.NameRepository;
 
 @Controller
 @EnableAutoConfiguration
@@ -23,14 +22,16 @@ import hello.repository.NameRepository;
 public class MemberController {
 	
 	@Autowired
-	NameRepository repository;
+	MemberRegist memberregist;
 
+	@Autowired
+	MemberSearch membersearch;
+	
 //ここはHOME画面
 	//HOME
 	@RequestMapping({ "/", "/home" })
 	public String home(Model model) {
-		MemberSearch ms = new MemberSearch();
-		model.addAttribute("name", ms.MemberList(repository));
+		model.addAttribute("name", membersearch.MemberList());
 		return "home";
 	}
 	
@@ -44,15 +45,15 @@ public class MemberController {
 	
 	//入力内容確認画面
 	@RequestMapping(value = "/checkName", method = RequestMethod.POST)
-	public String checkForm(@ModelAttribute @Valid NameForm nameForm, Model model) {
+	public String checkForm(@ModelAttribute @Validated NameForm nameForm, Model model) {
 		model.addAttribute("nameForm", nameForm);
 		return "checkName";
 	}
 	
 	// 登録完了画面
 	@RequestMapping(value = "/finishName", method = RequestMethod.POST)
-	public String finishForm( @ModelAttribute @Valid NameForm nameForm, Model model) {
-		new MemberRegist(nameForm,repository);
+	public String finishForm( @ModelAttribute @Validated NameForm nameForm, Model model) {
+		memberregist.MemberRegister(nameForm);
 		model.addAttribute("nameForm", nameForm);
 		return "finishName";
 	}
@@ -69,9 +70,8 @@ public class MemberController {
 	public String finishSearch( Model model, @RequestParam("category") String category,
 			@RequestParam("word") String word) {
 		
-		MemberSearch ms = new MemberSearch();
 		model.addAttribute("word", word);
-		model.addAttribute("results", ms.MemberSearchList(category,word,repository));
+		model.addAttribute("results", membersearch.MemberSearchList(category,word));
 		return "finishSearch";
 	}
 
