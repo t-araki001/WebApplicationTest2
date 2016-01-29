@@ -34,14 +34,14 @@ h1 {
 	<h1>ユーザ検索</h1>
 	<h2>検索したい名前を入力</h2>
 
-	<form action="#" th:action="@{/finishSearch}" method="post">
+	<form action="#" th:action="@{/finishSearch}"  th:object="${searchForm}" method="post">
 		<div>
 			<label>検索ワード : </label> 
-			<select name="category">
+			<select name="category" >
 				<option value="fullName">名字or名前</option>
 				<option value="firstName">名字</option>
 				<option value="lastName">名前</option>			
-			</select> <input type="text" name="word" onblur="chktext(this)"/>
+			</select> <input type="text" name="word" th:field="*{word}"  onblur="chktext(this)"/>
 		</div>
 
 		<div>

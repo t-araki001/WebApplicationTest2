@@ -10,9 +10,9 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import hello.form.NameForm;
+import hello.form.SearchForm;
 import hello.model.MemberRegist;
 import hello.model.MemberSearch;
 
@@ -61,17 +61,16 @@ public class MemberController {
 //ここから検索機能
 	//検索内容入力画面
 	@RequestMapping(value = "/searchName", method = RequestMethod.GET)
-	public String searchnameForm(){
+	public String searchnameForm(@ModelAttribute SearchForm searchForm){
 		return "searchName";
 	}
 	
 	// 検索完了画面
 	@RequestMapping(value = "/finishSearch", method = RequestMethod.POST)
-	public String finishSearch(Model model, @RequestParam("category") String category,
-			@RequestParam("word") String word){
+	public String finishSearch(@ModelAttribute @Validated SearchForm searchForm, Model model){
 		
-		model.addAttribute("word", word);
-		model.addAttribute("results", memberSearch.MemberSearchList(category, word));
+		model.addAttribute("word", searchForm.getWord());
+		model.addAttribute("results", memberSearch.MemberSearchList(searchForm));
 		return "finishSearch";
 	}
 

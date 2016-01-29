@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import hello.entity.Name;
+import hello.form.SearchForm;
 import hello.repository.NameRepository;
 
 @Component
@@ -20,14 +21,14 @@ public class MemberSearch {
 	public MemberSearch() {
 	}
 
-	public List<Name> MemberSearchList(String category, String word) {
+	public List<Name> MemberSearchList(SearchForm searchForm) {
 		List<Name> list = null;
-		if (category.equals("firstName")) {
-			list = repository.findByFirstname(word);
-		}else if (category.equals("lastName")) { 
-			list = repository.findByLastname(word); 
-		}else if (category.equals("fullName")) { 
-			list = repository.findByFirstnameOrLastname(word, word); 
+		if (searchForm.getCategory().equals("firstName")) {
+			list = repository.findByFirstname(searchForm.getWord());
+		}else if (searchForm.getCategory().equals("lastName")) { 
+			list = repository.findByLastname(searchForm.getWord()); 
+		}else if (searchForm.getCategory().equals("fullName")) { 
+			list = repository.findByFirstnameOrLastname(searchForm.getWord(), searchForm.getWord()); 
 		}else { 
 			list = null; 
 		}
@@ -38,5 +39,6 @@ public class MemberSearch {
 		List<Name> list = repository.findAll();
 		return list;
 	}
+
 
 }
